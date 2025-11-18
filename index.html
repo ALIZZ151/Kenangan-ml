@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Website Kenangan Game</title>
+<!-- Preload Optimizations -->
+<link rel="preload" as="image" href="https://files.catbox.moe/320be5.jpg">
+<link rel="preload" as="image" href="https://files.catbox.moe/npytcy.jpg">
+<link rel="preload" as="image" href="https://files.catbox.moe/yzp4ky.jpg">
+<link rel="preload" as="image" href="https://files.catbox.moe/n6ajcl.jpg">
+<link rel="preconnect" href="https://files.catbox.moe">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to bottom, #020B2A, #0B1F4A);
+        color: #fff;
+        overflow-x: hidden;
+        padding-top: 70px; /* Space for fixed navbar */
+    }
+
+    /* Navigation */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(2, 11, 42, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(76, 195, 255, 0.3);
+    }
+
+    .nav-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .nav-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #00A8FF, #4CC3FF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-menu a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+        font-weight: 500;
+        padding: 5px 10px;
+        border-radius: 15px;
+    }
+
+    .nav-menu a:hover {
+        color: #4CC3FF;
+        background: rgba(76, 195, 255, 0.1);
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #007BFF, #4CC3FF);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        display: none;
+        z-index: 999;
+        font-size: 1.2rem;
+        box-shadow: 0 0 20px rgba(76, 195, 255, 0.5);
+        transition: all 0.3s ease;
+    }
+
+    .back-to-top:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 0 30px rgba(76, 195, 255, 0.8);
+    }
+
+    /* Particle Background */
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    h1, h2 {
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .title-main {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #00A8FF 0%, #4CC3FF 50%, #FFFFFF 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .typing-container {
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .typing-text {
+        font-size: 2.2rem;
+        font-weight: 600;
+        text-align: center;
+        line-height: 1.4;
+    }
+
+    .white-text {
+        color: #FFFFFF;
+        text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+    .blue-text {
+        color: #4CC3FF;
+        text-shadow: 0 0 15px #4CC3FF;
+    }
+
+    .cursor {
+        display: inline-block;
+        width: 3px;
+        background: #4CC3FF;
+        margin-left: 5px;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    .desc {
+        max-width: 700px;
+        margin-top: 30px;
+        font-size: 1.3rem;
+        opacity: 0.9;
+        line-height: 1.6;
+        color: #E0F4FF;
+    }
+
+    .button {
+        margin-top: 40px;
+        padding: 18px 45px;
+        font-size: 1.2rem;
+        background: linear-gradient(135deg, #007BFF, #4CC3FF);
+        border: none;
+        border-radius: 35px;
+        cursor: pointer;
+        color: white;
+        font-weight: 600;
+        transition: 0.4s;
+        box-shadow: 0 0 30px #009dffb7;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 0 40px #4CC3FF;
+    }
+
+    .button:active {
+        transform: translateY(-2px) scale(1.02);
+        transition: 0.1s;
+    }
+
+    .button::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: 0.5s;
+    }
+
+    .button:hover::after {
+        left: 100%;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background: linear-gradient(135deg, #06132e, #0B1F4A);
+        padding: 40px;
+        border-radius: 20px;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 0 50px rgba(76, 195, 255, 0.3);
+        border: 2px solid #4CC3FF;
+        animation: modalAppear 0.5s ease-out;
+    }
+
+    @keyframes modalAppear {
+        from {
+            opacity: 0;
+            transform: scale(0.8) translateY(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    .modal h2 {
+        color: #4CC3FF;
+        margin-bottom: 20px;
+    }
+
+    .modal p {
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
+
+    .close-modal {
+        background: #4CC3FF;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .close-modal:hover {
+        background: #00A8FF;
+        transform: scale(1.05);
+    }
+
+    /* Image Card Improvements */
+    .img-card {
+        flex: 1;
+        background: #06132e;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 0 25px #003cff6c;
+        text-align: center;
+        transition: transform 0.3s ease;
+        position: relative;
+    }
+
+    .img-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .img-card img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: contain;
+        border-radius: 15px;
+        border: 2px solid #4CC3FF;
+        box-shadow: 0 0 20px rgba(76, 195, 255, 0.3);
+        transition: transform 0.3s ease;
+        background-color: #0a1a3a;
+        cursor: zoom-in;
+    }
+
+    .img-card:hover img {
+        transform: scale(1.02);
+    }
+
+    .image-caption {
+        margin-top: 15px;
+        padding: 12px;
+        background: rgba(76, 195, 255, 0.1);
+        border-radius: 10px;
+        border-left: 3px solid #4CC3FF;
+        font-style: italic;
+        color: #E0F4FF;
+        line-height: 1.5;
+    }
+
+    .memory-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(76, 195, 255, 0.3);
+    }
+
+    .stat {
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #4CC3FF;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+    /* Share Buttons */
+    .share-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .share-btn {
+        background: rgba(76, 195, 255, 0.2);
+        border: 1px solid #4CC3FF;
+        color: #4CC3FF;
+        padding: 8px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .share-btn:hover {
+        background: #4CC3FF;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lightbox-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .lightbox-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 10px;
+        box-shadow: 0 0 50px rgba(76, 195, 255, 0.3);
+    }
+
+    .close-lightbox {
+        position: absolute;
+        top: -50px;
+        right: 0;
+        color: white;
+        font-size: 2.5rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .close-lightbox:hover {
+        color: #4CC3FF;
+    }
+
+    /* Favorite Button */
+    .favorite-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        transition: all 0.3s;
+        z-index: 10;
+    }
+
+    .favorite-btn:hover {
+        background: rgba(76, 195, 255, 0.3);
+        transform: scale(1.1);
+    }
+
+    .favorite-btn.active {
+        color: #FFD700;
+        background: rgba(255, 215, 0, 0.2);
+    }
+
+    /* Rest of your existing CSS remains the same */
+    .section {
+        max-width: 1100px;
+        margin: 100px auto;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        padding: 20px;
+    }
+
+    .text-block {
+        flex: 1;
+    }
+
+    .tag {
+        color: #4CC3FF;
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2rem;
+        background: linear-gradient(90deg, #00A8FF, #4CC3FF);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .section-sub {
+        text-align: center;
+        max-width: 700px;
+        margin: 10px auto 50px;
+        opacity: 0.7;
+    }
+
+    .cards {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .card {
+        width: 250px;
+        padding: 20px;
+        background: #06132e;
+        border-radius: 20px;
+        box-shadow: 0 0 20px #003cff6c;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    footer {
+        text-align: center;
+        margin: 80px 0 30px;
+        opacity: 0.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        body {
+            padding-top: 60px;
+        }
+        
+        .navbar {
+            padding: 10px 0;
+        }
+        
+        .nav-menu {
+            gap: 15px;
+        }
+        
+        .nav-menu a {
+            font-size: 0.9rem;
+            padding: 4px 8px;
+        }
+        
+        .title-main {
+            font-size: 2.5rem;
+        }
+        
+        .typing-text {
+            font-size: 1.8rem;
+        }
+        
+        .desc {
+            font-size: 1.1rem;
+        }
+        
+        .modal-content {
+            margin: 20px;
+            padding: 30px 20px;
+        }
+        
+        .section {
+            flex-direction: column;
+        }
+        
+        .memory-stats {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .img-card img {
+            max-height: 300px;
+        }
+        
+        .share-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .back-to-top {
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .img-card img {
+            max-height: 250px;
+        }
+        
+        .nav-container {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .nav-menu {
+            gap: 10px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">🎮 Game Memories</div>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#memories">Memories</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="back-to-top">↑</button>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="">
+        <button class="close-lightbox">&times;</button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="memoryModal" class="modal">
+    <div class="modal-content">
+        <h2>🎮 Momen Spesial Kita</h2>
+        <p>Ini adalah tempat semua kenangan indah kita bermain game bersama. Setiap screenshot, setiap kemenangan, dan setiap momen lucu tersimpan di sini!</p>
+        <p>Scroll ke bawah untuk melihat lebih banyak kenangan seru...</p>
+        <button class="close-modal" onclick="closeModal()">Mantap!</button>
+    </div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <h1 class="title-main gradient-text">Kenangan Game</h1>
+    
+    <div class="typing-container">
+        <div class="typing-text">
+            <span id="typed-text"></span><span class="cursor">|</span>
+        </div>
+    </div>
+    
+    <p class="desc">Tempat Kembali ke Masa-Masa Terindah Bersama Teman Lama</p>
+    <button class="button" onclick="showMemories()">Lihat Momen Kita</button>
+</section>
+
+<!-- SECTION 1 - MEMORY #1 -->
+<section class="section" id="memories">
+    <div class="text-block">
+        <span class="tag">Kenangan #1 🎮</span>
+        <h2>Pertama Kali Sparing Bareng Tim</h2>
+        <p>Momen spesial ketika kita pertama kali sparing bersama tim. Meskipun hasilnya kalah, tapi kita bangga karena semua main dengan performa terbaik!</p>
+        <p>🔥 Semua anggota tim menunjukkan skill yang amazing<br>
+           💪 Kerja sama tim yang solid meskipun baru pertama<br>
+           🏆 Pride yang tinggi meski hasil tidak sesuai harapan</p>
+        <p>🕹️ Mobile Legends spar</p>
+        
+        <div class="share-buttons">
+            <button class="share-btn" onclick="shareMemory('Pertama Kali Sparing Bareng Tim')">📤 Share Memory Ini</button>
+            <button class="share-btn" onclick="playClickSound()">🔊 Play Sound</button>
+        </div>
+    </div>
+
+    <div class="img-card">
+        <button class="favorite-btn" onclick="toggleFavorite(this)" data-memory="1">☆</button>
+        <img src="https://files.catbox.moe/320be5.jpg" alt="Sparing Tim Pertama Kali" onerror="this.src='https://files.catbox.moe/gaming-blue.jpg'" onclick="openLightbox(this)">
+        <div class="image-caption">
+            "Bukan tentang menang atau kalah, tapi tentang kebanggaan bermain sepenuh hati bersama tim!"
+        </div>
+        <div class="memory-stats">
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Player</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Team</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Kebanggaan</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 2 - MEMORY #2 -->
+<section class="section">
+    <div class="text-block">
+        <span class="tag">Kenangan #2 🏆</span>
+        <h2>Momen Bantai Musuh Bersama</h2>
+        <p>Saat-saat epic ketika kita berhasil mendominasi pertandingan dan membuat musuh frustrasi dengan strategi kita!</p>
+        <p>🎯 Skill combo yang sempurna antara tank dan damage dealer<br>
+           ⚡ Timing ultimate yang tepat membuat musuh kewalahan<br>
+           🧠 Strategi roaming dan ganking yang bikin lawan ketakutan<br>
+           💥 Teamfight yang berakhir dengan wipeout total musuh</p>
+        <p>🕹️ Ranked Match - Mythic Tier</p>
+        
+        <div class="share-buttons">
+            <button class="share-btn" onclick="shareMemory('Momen Bantai Musuh Bersama')">📤 Share Memory Ini</button>
+            <button class="share-btn" onclick="playClickSound()">🔊 Play Sound</button>
+        </div>
+    </div>
+
+    <div class="img-card">
+        <button class="favorite-btn" onclick="toggleFavorite(this)" data-memory="2">☆</button>
+        <img src="https://files.catbox.moe/npytcy.jpg" alt="Momen Bantai Musuh" onerror="this.src='https://files.catbox.moe/gaming-blue.jpg'" onclick="openLightbox(this)">
+        <div class="image-caption">
+            "Ini gambar pas kita bantai-bantai musuh dengan strategi jitu yang kita rancang bersama! Rasanya seperti pasukan elite yang tidak terkalahkan."
+        </div>
+        <div class="memory-stats">
+            <div class="stat">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Kills</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Deaths</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Assists</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3 - MEMORY #3 -->
+<section class="section">
+    <div class="text-block">
+        <span class="tag">Kenangan #3 ⚔️</span>
+        <h2>Sparring Mematikan Lawan Tim Rival</h2>
+        <p>Momen intens ketika kita menghadapi tim rival terkuat dalam sesi sparring yang sangat sengit!</p>
+        <p>🔥 Pertarungan mid-lane yang sangat ketat dan menegangkan<br>
+           🛡️ Tank kita berhasil menahan serangan demi serangan<br>
+           💫 Mage kita melakukan combo skill yang sempurna<br>
+           🎯 Marksman kita memberikan damage yang luar biasa</p>
+        <p>🕹️ Practice Match vs Tim Elite</p>
+        
+        <div class="share-buttons">
+            <button class="share-btn" onclick="shareMemory('Sparring Mematikan Lawan Tim Rival')">📤 Share Memory Ini</button>
+            <button class="share-btn" onclick="playClickSound()">🔊 Play Sound</button>
+        </div>
+    </div>
+
+    <div class="img-card">
+        <button class="favorite-btn" onclick="toggleFavorite(this)" data-memory="3">☆</button>
+        <img src="https://files.catbox.moe/yzp4ky.jpg" alt="Sparring Lawan Tim Rival" onerror="this.src='https://files.catbox.moe/gaming-blue.jpg'" onclick="openLightbox(this)">
+        <div class="image-caption">
+            "Ini gambar pas kita bantai-bantai pas spar sama musuh kita! Sungguh momen yang sangat membanggakan dimana kita menunjukkan kelas sesungguhnya sebagai tim yang solid."
+        </div>
+        <div class="memory-stats">
+            <div class="stat">
+                <div class="stat-number">18</div>
+                <div class="stat-label">Kills</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Deaths</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Assists</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 4 - MEMORY #4 -->
+<section class="section">
+    <div class="text-block">
+        <span class="tag">Kenangan #4 🎉</span>
+        <h2>Victory Celebration dengan Style</h2>
+        <p>Momen kemenangan yang kita rayakan dengan recall bersama di depan base musuh!</p>
+        <p>✨ Semua anggota tim sync recall bersama-sama<br>
+           🏰 Dilakukan tepat di depan turet musuh yang hancur<br>
+           😎 Gerakan yang penuh gaya dan percaya diri<br>
+           🎊 Celebration yang sempurna setelah pertarungan keras</p>
+        <p>🕹️ Ranked Game - Mythic Glory</p>
+        
+        <div class="share-buttons">
+            <button class="share-btn" onclick="shareMemory('Victory Celebration dengan Style')">📤 Share Memory Ini</button>
+            <button class="share-btn" onclick="playClickSound()">🔊 Play Sound</button>
+        </div>
+    </div>
+
+    <div class="img-card">
+        <button class="favorite-btn" onclick="toggleFavorite(this)" data-memory="4">☆</button>
+        <img src="https://files.catbox.moe/n6ajcl.jpg" alt="Recall di Depan Turet Musuh" onerror="this.src='https://files.catbox.moe/gaming-blue.jpg'" onclick="openLightbox(this)">
+        <div class="image-caption">
+            "Ini gambar pas kita recall-recall bersama di depan turet musuh! Momen yang sangat epik dan sedikit arogan tapi sangat memuaskan."
+        </div>
+        <div class="memory-stats">
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Recall</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Victory</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Style</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 5 -->
+<h2 class="section-title">Walau jarang mabar, tapi memorinya masih hidup</h2>
+<p class="section-sub">Walau sekarang sibuk masing-masing, tapi momen tryhard dan ketawa waktu main bareng masih nggak akan lupa.</p>
+
+<footer id="about">
+    Dibuat untuk kenangan game kita. ❤️
+</footer>
+
+<script>
+/* SIMPLE PARTICLE BACKGROUND */
+const c = document.getElementById("particles");
+const ctx = c.getContext("2d");
+c.width = window.innerWidth;
+c.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 100; i++) {
+    particles.push({
+        x: Math.random() * c.width,
+        y: Math.random() * c.height,
+        size: Math.random() * 2,
+        speedY: Math.random() * 0.8 + 0.2
+    });
+}
+
+function animate() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    particles.forEach(p => {
+        p.y += p.speedY;
+        if (p.y > c.height) p.y = 0;
+        ctx.fillStyle = "#4CC3FF";
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+
+/* TYPING EFFECT */
+const typedTextElement = document.getElementById('typed-text');
+const textToType = "Tempat Kembali ke Masa-Masa Terindah Bersama Teman Lama";
+let charIndex = 0;
+let isDeleting = false;
+let typingDelay = 100;
+let erasingDelay = 50;
+let newTextDelay = 2000;
+
+function typeText() {
+    if (charIndex < textToType.length && !isDeleting) {
+        typedTextElement.textContent += textToType.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeText, typingDelay);
+    } else if (isDeleting && charIndex > 0) {
+        typedTextElement.textContent = textToType.substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(typeText, erasingDelay);
+    } else if (!isDeleting && charIndex === textToType.length) {
+        setTimeout(() => {
+            isDeleting = true;
+            typeText();
+        }, newTextDelay);
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        setTimeout(typeText, typingDelay);
+    }
+}
+
+/* MODAL FUNCTIONS */
+function showMemories() {
+    const modal = document.getElementById('memoryModal');
+    modal.style.display = 'flex';
+    playClickSound();
+    
+    // Smooth scroll to first memory section after modal closes
+    setTimeout(() => {
+        const firstSection = document.querySelector('.section');
+        if (firstSection) {
+            firstSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, 500);
+}
+
+function closeModal() {
+    const modal = document.getElementById('memoryModal');
+    modal.style.display = 'none';
+    playClickSound();
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('memoryModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+        closeLightbox();
+    }
+});
+
+/* LIGHTBOX FUNCTIONALITY */
+function openLightbox(imgElement) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    
+    lightboxImg.src = imgElement.src;
+    lightboxImg.alt = imgElement.alt;
+    lightbox.style.display = 'flex';
+    playClickSound();
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+}
+
+// Close lightbox when clicking outside image or close button
+document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this || e.target.classList.contains('close-lightbox')) {
+        closeLightbox();
+    }
+});
+
+/* BACK TO TOP FUNCTIONALITY */
+const backToTopBtn = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTopBtn.style.display = 'block';
+    } else {
+        backToTopBtn.style.display = 'none';
+    }
+});
+
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    playClickSound();
+});
+
+/* FAVORITE FUNCTIONALITY */
+function toggleFavorite(button) {
+    button.classList.toggle('active');
+    button.textContent = button.classList.contains('active') ? '★' : '☆';
+    
+    const memoryId = button.getAttribute('data-memory');
+    const isFavorite = button.classList.contains('active');
+    
+    // Save to localStorage
+    const favorites = JSON.parse(localStorage.getItem('memoryFavorites') || '{}');
+    favorites[memoryId] = isFavorite;
+    localStorage.setItem('memoryFavorites', JSON.stringify(favorites));
+    
+    playClickSound();
+}
+
+// Load favorite states on page load
+function loadFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('memoryFavorites') || '{}');
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+        const memoryId = button.getAttribute('data-memory');
+        if (favorites[memoryId]) {
+            button.classList.add('active');
+            button.textContent = '★';
+        }
+    });
+}
+
+/* SHARE FUNCTIONALITY */
+function shareMemory(memoryTitle) {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Kenangan Game Kita',
+            text: `Lihat kenangan ${memoryTitle} di website kenangan game kita!`,
+            url: window.location.href
+        }).then(() => {
+            console.log('Berhasil share!');
+        }).catch(err => {
+            console.log('Error sharing:', err);
+        });
+    } else {
+        // Fallback untuk browser yang tidak support Web Share API
+        const shareUrl = window.location.href;
+        navigator.clipboard.writeText(shareUrl).then(() => {
+            alert('Link berhasil disalin ke clipboard! 🎮\n\nBagikan link ini ke teman-teman: ' + shareUrl);
+        }).catch(err => {
+            alert('Silakan salin link berikut untuk berbagi:\n\n' + shareUrl);
+        });
+    }
+    playClickSound();
+}
+
+/* AUDIO EFFECTS */
+const clickSound = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
+
+function playClickSound() {
+    try {
+        clickSound.currentTime = 0;
+        clickSound.volume = 0.3;
+        clickSound.play().catch(e => console.log('Audio play failed:', e));
+    } catch (error) {
+        console.log('Audio error:', error);
+    }
+}
+
+// Add click sound to all buttons
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', playClickSound);
+    });
+});
+
+/* COUNT-UP ANIMATION FOR STATS */
+function animateStats() {
+    const stats = document.querySelectorAll('.stat-number');
+    
+    stats.forEach(stat => {
+        const originalText = stat.textContent;
+        const target = isNaN(originalText) ? 0 : parseInt(originalText);
+        
+        if (!isNaN(target) && target > 0) {
+            let current = 0;
+            const increment = target / 30;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                    stat.textContent = originalText; // Kembalikan teks asli untuk simbol
+                } else {
+                    stat.textContent = Math.floor(current);
+                }
+            }, 50);
+        }
+    });
+}
+
+// Animate stats when they come into view
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateStats();
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+// Observe all sections with stats
+document.querySelectorAll('.section').forEach(section => {
+    observer.observe(section);
+});
+
+/* LAZY LOADING FOR IMAGES */
+function initLazyLoading() {
+    const images = document.querySelectorAll('img');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                }
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    images.forEach(img => {
+        if (img.dataset.src) {
+            imageObserver.observe(img);
+        }
+    });
+}
+
+/* USER PREFERENCES */
+function saveUserPreferences() {
+    const preferences = {
+        visited: true,
+        lastVisit: new Date().toISOString(),
+        favoriteMemory: null
+    };
+    localStorage.setItem('gameMemoriesPrefs', JSON.stringify(preferences));
+}
+
+function markFavorite(memoryId) {
+    const prefs = JSON.parse(localStorage.getItem('gameMemoriesPrefs') || '{}');
+    prefs.favoriteMemory = memoryId;
+    localStorage.setItem('gameMemoriesPrefs', JSON.stringify(prefs));
+}
+
+// Initialize everything when page loads
+window.addEventListener('load', () => {
+    setTimeout(typeText, 1000);
+    loadFavorites();
+    initLazyLoading();
+    saveUserPreferences();
+    
+    // Add smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
+
+// Handle window resize for particle canvas
+window.addEventListener('resize', () => {
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>
